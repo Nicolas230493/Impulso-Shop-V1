@@ -6,8 +6,9 @@ import environ
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-# Add project root to sys.path
+# Add project root and apps directory to sys.path
 sys.path.insert(0, str(BASE_DIR))
+sys.path.insert(0, str(BASE_DIR / 'apps'))
 
 # Initialize environment
 env = environ.Env()
@@ -29,12 +30,22 @@ INSTALLED_APPS = [
     
     # Third-party
     'rest_framework',
+    'django_filters',
     'corsheaders',
     'channels',
     
     # Local apps
-    'users.apps.UsersConfig',
+    'apps.users.apps.UsersConfig',
+    'apps.products.apps.ProductsConfig',
+    'apps.orders.apps.OrdersConfig',
+    'apps.logistics.apps.LogisticsConfig',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ],
+}
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -52,7 +63,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

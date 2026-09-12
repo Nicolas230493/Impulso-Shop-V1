@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impulso Shop - E-commerce D2C</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <!-- Navbar -->
+    <nav class="bg-yellow-400 p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-gray-900">Impulso Shop</h1>
+            <input type="text" placeholder="Buscar productos..." class="w-1/2 p-2 rounded">
+            <div class="flex gap-4">
+                <a href="#" class="text-gray-900 font-semibold">Iniciar Sesión</a>
+                <a href="#" class="text-gray-900 font-semibold">Carrito</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="bg-white py-12 text-center border-b">
+        <h2 class="text-4xl font-extrabold text-gray-900">¡Ofertas Imperdibles!</h2>
+        <p class="mt-4 text-gray-600">Descubre lo mejor en tecnología, moda y hogar.</p>
+        <button class="mt-6 bg-blue-600 text-white px-8 py-3 rounded font-bold">Ver Productos</button>
+    </section>
+
+    <!-- Products Grid -->
+    <main class="container mx-auto py-12">
+        <h3 class="text-2xl font-bold mb-8">Productos Destacados</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            {% for product in products %}
+            <div class="bg-white p-4 rounded shadow">
+                <div class="bg-gray-200 h-48 mb-4 rounded flex items-center justify-center">Imagen</div>
+                <h4 class="font-bold">{{ product.name }}</h4>
+                <p class="text-gray-500">{{ product.category.name }}</p>
+                <p class="text-xl font-bold mt-2">${{ product.base_price }}</p>
+                <button class="w-full mt-4 bg-blue-100 text-blue-700 py-2 rounded">Ver detalle</button>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 text-center">
+        <p>&copy; 2026 Impulso Shop. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
